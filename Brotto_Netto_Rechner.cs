@@ -1,6 +1,6 @@
 ﻿namespace brutto_netto_rechner
 {
-    internal class Program
+    internal class Brotto_Netto_Rechner
     {
         static void Main(string[] args)
         {
