@@ -7,9 +7,9 @@ namespace brutto_netto_rechner
         static void Main(string[] args)
         {
             // TODO LOGGER
-            Console.WriteLine("Hello, World!");
+            console.writeline("hello, world!");
 
-            var keks = new Class_Lohnsteuer();
+            var keks = new lohnsteuer_2024dec();
         }
     }
 }
