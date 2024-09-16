@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace brutto_netto_rechner.classes
 {
@@ -277,36 +278,286 @@ namespace brutto_netto_rechner.classes
                 }
             }
             Kztab = 1;
-            if (Stkl == 1)
+            switch (Stkl)
             {
-                Sap = 36;
-                Kfb = Zkf * 9312;
-            } else if (Stkl == 2)
-            {
-                Efa = 4260;
-                Sap = 36;
-                Kfb = Zkf * 9312;
-            } else if (Stkl == 3)
-            {
-                Kztab = 2;
-                Sap = 36;
-                Kfb = Zkf * 9312;
-            } else if (Stkl == 4) {
-                Sap = 36;
-                Kfb = Zkf * 4656;
-            } else if (Stkl == 5)
-            {
-                Sap = 36;
-                Kfb = decimal.Zero;
-            } else
-            {
-                Kfb = decimal.Zero;
+                case 1:
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 2:
+                    Efa = 4260m;
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 3:
+                    Kztab = 2;
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 4:
+                    Sap = 36m;
+                    Kfb = Zkf * 4770;
+                    break;
+                case 5:
+                    Sap = 36m;
+                    Kfb = decimal.Zero;
+                    break;
+                default:
+                    Kfb = decimal.Zero;
+                    break;
             }
             Ztabfb = Efa + Anp + Sap + Fvbz;
         }
         private void Mztabfbn()
         {
-
+            Anp = decimal.Zero;
+            if (Zvbez >= 0 && Zvbez < Fvbz)
+            {
+                Fvbz = Zvbez;
+            }
+            if (Stkl < 6)
+            {
+                if (Zvbez > 0)
+                {
+                    if (Zvbez - Fvbz < 102)
+                    {
+                        // TODO aufrunden auf ganze euro
+                        Anp = Zvbez - Fvbz;
+                    } else
+                    {
+                        Anp = 102m;
+                    }
+                }
+            } else
+            {
+                Fvbz = decimal.Zero;
+                Fvbzso = decimal.Zero;
+            }
+            if (Stkl < 6 && Zre4 > Zvbez)
+            {
+                if (Zre4 - Zvbez < 1230)
+                {
+                    // TODO aufrunden auf ganze euro
+                    Anp += Zre4 - Zvbez;
+                } else
+                {
+                    Anp += 1230;
+                }
+            }
+            Kztab = 1;
+            switch (Stkl)
+            {
+                case 1:
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 2:
+                    Efa = 4260m;
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 3:
+                    Kztab = 2;
+                    Sap = 36m;
+                    Kfb = Zkf * 9540m;
+                    break;
+                case 4:
+                    Sap = 36m;
+                    Kfb = Zkf * 4770;
+                    break;
+                case 5:
+                    Sap = 36m;
+                    Kfb = decimal.Zero;
+                    break;
+                default:
+                    Kfb = decimal.Zero;
+                    break;
+            }
+            Ztabfb = Efa + Anp + Sap + Fvbz;
+        }
+        private void Mlstjahr()
+        {
+            Upevp();
+            if (Kennvmt != 1)
+            {
+                Zve = Zre4 - Ztabfb - Vsp;
+                Upmlst();
+            } else
+            {
+                Zve = Zre4 - Ztabfb - Vsp - Vmt / 100m - Vkapa / 100m;
+                if (Zve < 0)
+                {
+                    Zve = (Zve + Vmt / 100m + Vkapa / 100m) / 5m;
+                    Upmlst();
+                    St *= 5m;
+                } else
+                {
+                    Upmlst();
+                    Stovmt = St;
+                    Zve += (Vmt + Vkapa) / 500;
+                    Upmlst();
+                    St = (St - Stovmt) * 5m + Stovmt;
+                }
+            }
+        }
+        private void Mvsp()
+        {
+            if (Zre4vp > Bbgkvpv)
+            {
+                Zre4vp = Bbgkvpv;
+            }
+            if (Pkv > 0)
+            {
+                if (Stkl == 6)
+                {
+                    Vsp3 = decimal.Zero;
+                } else
+                {
+                    Vsp3 = Pkpv * 12m / 100m;
+                    if (Pkv == 2)
+                    {
+                        Vsp3 -= Zre4vp * (Kvsatzag + Pvsatzag);
+                    }
+                }
+            } else
+            {
+                Vsp3 = Zre4vp * (Kvsatzan + Pvsatzan);
+            }
+            // TODO aufrunden auf ganze euro
+            Vsp = Vsp3 + Vsp1;
+        }
+        private void Mst5_6()
+        {
+            Zzx = X;
+            if (Zzx > W2stkl5)
+            {
+                Zx = W2stkl5;
+                Up5_6();
+                if (Zzx > W3stkl5)
+                {
+                    // TODO abrunden auf ganze euro
+                    St += (W3stkl5 - W2stkl5) * 0.42m;
+                    // TODO abrunden auf ganze euro
+                    St += (Zzx - W3stkl5) * 0.45m;
+                } else
+                {
+                    // TODO abrunden auf ganze euro
+                    St += (Zzx - W2stkl5) * 0.42m;
+                }
+            } else
+            {
+                Zx = Zzx;
+                Up5_6();
+                if (Zzx > W1stkl5)
+                {
+                    Vergl = St;
+                    Zx = W1stkl5;
+                    Up5_6();
+                    // TODO abrunden auf ganze euro
+                    Hoch = St + (Zzx - W1stkl5) * 0.42m;
+                    if (Hoch < Vergl)
+                    {
+                        St = Hoch;
+                    } else
+                    {
+                        St = Vergl;
+                    }
+                }
+            }
+        }
+        private void Upvkvlzz()
+        {
+            Upvkv();
+            Jw = Vkv;
+            Upanteil();
+            Vkvlzz = Anteil1;
+        }
+        private void Upvkv()
+        {
+            if (Pkv > 0)
+            {
+                if (Vsp2 > Vsp3)
+                {
+                    Vkv = Vsp2 * 100m;
+                } else
+                {
+                    Vkv = Vsp3 * 100m;
+                }
+            } else
+            {
+                Vkv = decimal.Zero;
+            }
+        }
+        private void Uplstlzz()
+        {
+            Jw = Lstjahr * 100m;
+            if (Schleifz == 1)
+            {
+                Jwlsta = Jw;
+            } else
+            {
+                Jwlstn = Jw;
+            }
+            Upabteil();
+            Lstlzz = Anteil1;
+        }
+        private void Upmlst()
+        {
+            if (Zve < 1)
+            {
+                Zve = decimal.Zero;
+                X = decimal.Zero;
+            } else
+            {
+                // TODO abrunden auf ganze euro
+                X = Zve / Kztab;
+            }
+            if ( Stkl < 5)
+            {
+                if (Schleifz == 1)
+                {
+                    Uptab24a();
+                } else
+                {
+                    Uptab24n();
+                }
+            } else
+            {
+                Mst5_6();
+            }
+        }
+        private void Upevp()
+        {
+            if (Krv > 1)
+            {
+                Vsp1 = decimal.Zero;
+            } else
+            {
+                if (Zre4vp > Bbgrv)
+                {
+                    Zre4vp = Bbgrv;
+                }
+                Vsp1 = Zre4vp * Rvsatzan;
+            }
+            Vsp2 = 0.12m * Zre4vp;
+            if (Stkl == 3)
+            {
+                Vhb = 3000;
+            } else
+            {
+                Vhb = 1900;
+            }
+            if (Vsp2 > Vhb)
+            {
+                Vsp2 = Vhb;
+            }
+            // TODO aufrunden auf ganze euro
+            Vspn = Vsp1 + Vsp2;
+            Mvsp();
+            if (Vspn > Vsp)
+            {
+                Vsp = Vspn;
+            }
         }
     }
 }
