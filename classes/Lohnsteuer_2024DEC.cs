@@ -626,11 +626,52 @@ namespace brutto_netto_rechner.classes
                 {
                     Mosonst();
                     Lst1 = Lstoso;
-                } else
+                }
+                else
                 {
                     Lst1 = Lstso;
                 }
-                // TODO 39
+                Vbezbso = Sterbe + Vkapa;
+                Zre4j = (Zre4 + Sonstb + Vmt + Vkapa) / 100m;
+                Zvbezj = (Jvbez + Vbs + Vkapa) / 100m;
+                Kennvmt = 2;
+                Mre4sonst();
+                Mlstjahr();
+                Lst3 = St * 100m;
+                Mre4abz();
+                Zre4vp -= Jre4ent / 100m - Sonstent / 100m;
+                Kennvmt = 1;
+                Mlstjahr();
+                Lst2 = St * 100m;
+                Stv = Lst2 - Lst1;
+                Lst3 -= Lst1;
+                if (Lst3 < Stv)
+                {
+                    Stv = Lst3;
+                }
+                if (Stv < 0)
+                {
+                    Stv = decimal.Zero;
+                } else
+                {
+                    Stv *= F;
+                }
+                Solzvbmg = Stv / 100m + Jbmg;
+                if (Solzvbmg > Solzfrei)
+                {
+                    // TODO abrunden auf ganze cents
+                    Solzv = Stv * 5.5m / 100m;
+                } else
+                {
+                    Solzv = decimal.Zero;
+                }
+                if (R > 0)
+                {
+                    Bkv = Stv;
+                } else
+                {
+                    Bkv = decimal.Zero;
+                }
             } else
             {
                 Stv = decimal.Zero;
