@@ -282,21 +282,21 @@ namespace brutto_netto_rechner.classes
             {
                 case 1:
                     Sap = 36m;
-                    Kfb = Zkf * 9540m;
+                    Kfb = Zkf * 9312m;
                     break;
                 case 2:
                     Efa = 4260m;
                     Sap = 36m;
-                    Kfb = Zkf * 9540m;
+                    Kfb = Zkf * 9312m;
                     break;
                 case 3:
                     Kztab = 2;
                     Sap = 36m;
-                    Kfb = Zkf * 9540m;
+                    Kfb = Zkf * 9312m;
                     break;
                 case 4:
                     Sap = 36m;
-                    Kfb = Zkf * 4770;
+                    Kfb = Zkf * 4656m;
                     break;
                 case 5:
                     Sap = 36m;
@@ -363,7 +363,7 @@ namespace brutto_netto_rechner.classes
                     break;
                 case 4:
                     Sap = 36m;
-                    Kfb = Zkf * 4770;
+                    Kfb = Zkf * 4770m;
                     break;
                 case 5:
                     Sap = 36m;
@@ -588,7 +588,7 @@ namespace brutto_netto_rechner.classes
             }
             if (Solzszve < 1)
             {
-                Solzszve += decimal.Zero;
+                Solzszve = decimal.Zero;
                 X =  decimal.Zero;
             } else
             {
@@ -639,7 +639,8 @@ namespace brutto_netto_rechner.classes
                 Mlstjahr();
                 Lst3 = St * 100m;
                 Mre4abz();
-                Zre4vp -= Jre4ent / 100m - Sonstent / 100m;
+                // TODO test -=
+                Zre4vp = Zre4vp - Jre4ent / 100m - Sonstent / 100m;
                 Kennvmt = 1;
                 Mlstjahr();
                 Lst2 = St * 100m;
@@ -679,6 +680,35 @@ namespace brutto_netto_rechner.classes
                 Bkv = decimal.Zero;
             }
         }
+        private void Mosonst()
+        {
+            Zre4j = Jre4 / 100m;
+            Zvbezj = Jvbez / 100m;
+            Jlfreib = Jfreib / 100m;
+            Jlhinzu = Jhinzu / 100m;
+            Mre4();
+            Mre4abz();
+            Zre4vp = Zre4vp - Jre4ent / 100m;
+            Mztabfbn();
+            Vfrbs1 = (Anp * Fvb + Fvbz) * 100m;
+            Mlstjahr();
+            Wvfrbo = (Zve - Gfb) * 100m;
+            if (Wvfrbo < 0)
+            {
+                Wvfrbo = decimal.Zero;
+            }
+            Lstoso = St * 100m;
+        }
+        private void Mre4sonst()
+        {
+            Mre4();
+            Fvb = Fvbso;
+            Mre4abz();
+            Zre4vp += Mbv / 100m - Jre4ent / 100m - Sonstent / 100m;
+            Fvbz = Fvbzso;
+            Mztabfbn();
+            Vfrbs2 = (Anp + Fvb + Fvbz) * 100m - Vfrbs1;
+        }
         private void Stsmin()
         {
             if (Sts < 0)
@@ -714,6 +744,71 @@ namespace brutto_netto_rechner.classes
             } else
             {
                 Bks = decimal.Zero;
+            }
+        }
+        private void Uptab24a()
+        {
+            if (X < Gfb + 1)
+            {
+                St = decimal.Zero;
+            }
+            else if (X < 17006)
+            {
+                Y = (X - Gfb) / 10000m;
+                Rw = Y * 922.98m;
+                Rw += 1400m;
+                // TODO abrunde auf ganze euro
+                St = Rw * Y;
+            }
+            else if (X < 66761)
+            {
+                Y = (X - 17005m) / 10000m;
+                Rw = Y * 181.19m;
+                Rw += 2397m;
+                Rw *= Y;
+                // TODO abrunde auf ganze euro
+                St = Rw * 1025.38m;
+            }
+            else if (X < 277826)
+            {
+                // TODO abrunde auf ganze euro
+                St = X * 0.42m - 10602.13m;
+            }
+            else
+            {
+                // TODO abrunde auf ganze euro
+                St = X * 0.45m - 18936.88m;
+            }
+            St *= Kztab;
+        }
+        private void Uptab24n()
+        {
+            if (X < Gfb + 1)
+            {
+                St = decimal.Zero;
+            } else if (X < 17006)
+            {
+                Y = (X - Gfb) / 10000m;
+                Rw = Y * 954.8m;
+                Rw += 1400m;
+                // TODO abrunde auf ganze euro
+                St = Rw * Y;
+            } else if (X < 66761)
+            {
+                Y = (X - 17005m) / 10000m;
+                Rw = Y * 181.19m;
+                Rw += 2397m;
+                Rw *= Y;
+                // TODO abrunde auf ganze euro
+                St = Rw + 991.21m;
+            } else if (X < 277826)
+            {
+                // TODO abrunde auf ganze euro
+                St = X * 0.42m - 10636.31m;
+            } else
+            {
+                // TODO abrunde auf ganze euro
+                St = X * 0.45m - 18971.06m;
             }
         }
         private void Upanteil()
