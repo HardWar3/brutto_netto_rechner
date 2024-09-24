@@ -10,10 +10,29 @@ namespace brutto_netto_rechner.classes
 {
     internal class Lohnsteuer_2024DEC : Lohnsteuer_Basic
     {
-
         public void Start()
         {
-            // CODE HERE LATER
+            Lohnsteuer_2024();
+        }
+        private void Lohnsteuer_2024()
+        {
+            Mpara();
+            Mre4jl();
+            Vbezbso = decimal.Zero;
+            Kennvmt = 0;
+            Mre4();
+            Mre4abz();
+            Zre4vpm = Zre4vp;
+            Schleifz = 1m;
+            Mberech();
+            Schleifz = 2m;
+            W1stkl5 = 13432m;
+            Gfb = 11784m;
+            Zre4vp = Zre4vpm;
+            Mberech();
+            Mlst1224();
+            Msonst();
+            Mvmt();
         }
         private void Mpara()
         {
@@ -21,16 +40,16 @@ namespace brutto_netto_rechner.classes
             {
                 if (Krv == 0)
                 {
-                    Bbgrv = 90600;
+                    Bbgrv = 90600m;
                 }
                 else
                 {
-                    Bbgrv = 89400;
+                    Bbgrv = 89400m;
                 }
                 Rvsatzan = 0.093m;
             }
 
-            Bbgkvpv = 62100;
+            Bbgkvpv = 62100m;
             Kvsatzan = Kvz / 2 / 100 + 0.07m;
             Kvsatzag = 0.0085m + 0.07m;
 
@@ -44,47 +63,47 @@ namespace brutto_netto_rechner.classes
                 Pvsatzan = 0.017m;
                 Pvsatzag = 0.017m;
             }
-            if (Pvs == 1)
+            if (Pvz == 1)
             {
                 Pvsatzan += 0.006m;
             }
             else
             {
-                Pvsatzan -= Pva * 0.0025m;
+                Pvsatzan = Pvsatzan - Pva * 0.0025m;
             }
-            W1stkl5 = 13279;
-            W2stkl5 = 33380;
-            W3stkl5 = 222260;
-            Gfb = 11604;
-            Solzfrei = 18130;
+            W1stkl5 = 13279m;
+            W2stkl5 = 33380m;
+            W3stkl5 = 222260m;
+            Gfb = 11604m;
+            Solzfrei = 18130m;
         }
         private void Mre4jl()
         {
             switch (Lzz)
             {
                 case 1:
-                    Zre4j = Re4 / 100;
-                    Zvbezj = Vbez / 100;
-                    Jlfreib = Lzzfreib / 100;
-                    Jlhinzu = Lzzhinzu / 100;
+                    Zre4j = Re4 / 100m;
+                    Zvbezj = Vbez / 100m;
+                    Jlfreib = Lzzfreib / 100m;
+                    Jlhinzu = Lzzhinzu / 100m;
                     break;
                 case 2:
-                    Zre4j = Re4 * 12 / 100;
-                    Zvbezj = Vbez * 12 / 100;
-                    Jlfreib = Lzzfreib * 12 / 100;
-                    Jlhinzu = Lzzhinzu * 12 / 100;
+                    Zre4j = Re4 * 12m / 100m;
+                    Zvbezj = Vbez * 12m / 100m;
+                    Jlfreib = Lzzfreib * 12m / 100m;
+                    Jlhinzu = Lzzhinzu * 12m / 100m;
                     break;
                 case 3:
-                    Zre4j = Re4 * 360 / 7 / 100;
-                    Zvbezj = Vbez * 360 / 7 / 100;
-                    Jlfreib = Lzzfreib * 360 / 7 / 100;
-                    Jlhinzu = Lzzhinzu * 360 / 7 / 100;
+                    Zre4j = Re4 * 360m / 7m / 100m;
+                    Zvbezj = Vbez * 360m / 7m / 100m;
+                    Jlfreib = Lzzfreib * 360m / 7m / 100m;
+                    Jlhinzu = Lzzhinzu * 360m / 7m / 100m;
                     break;
                 default:
-                    Zre4j = Re4 * 360 / 100;
-                    Zvbezj = Vbez * 360 / 100;
-                    Jlfreib = Lzzfreib * 360 / 100;
-                    Jlhinzu = Lzzhinzu * 360 / 100;
+                    Zre4j = Re4 * 360m / 100m;
+                    Zvbezj = Vbez * 360m / 100m;
+                    Jlfreib = Lzzfreib * 360m / 100m;
+                    Jlhinzu = Lzzhinzu * 360m / 100m;
                     break;
             }
             if (Af == 0)
@@ -96,10 +115,10 @@ namespace brutto_netto_rechner.classes
         {
             if (Zvbezj == 0)
             {
-                Fvbz = 0;
-                Fvb = 0;
-                Fvbzso = 0;
-                Fvbso = 0;
+                Fvbz = decimal.Zero;
+                Fvb = decimal.Zero;
+                Fvbzso = decimal.Zero;
+                Fvbso = decimal.Zero;
             } else {
                 if (Vjahr < 2006) 
                 {
@@ -119,14 +138,16 @@ namespace brutto_netto_rechner.classes
                     Hfvb = Tab(2, J) / 12m * Zmvb;
                     // TODO aufrunden auf ganze euro
                     Fvbz = Tab(3, J) / 12m * Zmvb;
+                    Fvbz = Math.Round(Fvbz, 0, MidpointRounding.ToPositiveInfinity);
                 }else
                 {
-                    Vbezb = Vbezb * 12m + Vbezs;
+                    Vbezb = Vbezm * 12m + Vbezs;
                     Hfvb = Tab(2, J);
                     Fvbz = Tab(3, J);
                 }
                 // TODO aufrunden auf ganze cents
                 Fvb = Vbezb * Tab(1, J) / 100m;
+                Fvb = Math.Round(Fvb, 2, MidpointRounding.ToPositiveInfinity);
                 if (Fvb > Hfvb)
                 {
                     Fvb = Hfvb;
@@ -137,6 +158,7 @@ namespace brutto_netto_rechner.classes
                 }
                 // TODO aufrunden auf ganze cents
                 Fvbso = Fvb + Vbezbso * Tab(1, J) / 100m;
+                Fvbso = Math.Round(Fvbso, 2, MidpointRounding.ToPositiveInfinity);
                 if (Fvbso > Tab(2, J))
                 {
                     Fvbso = Tab(2, J);
@@ -144,10 +166,12 @@ namespace brutto_netto_rechner.classes
                 Hfvbzso = (Vbezb + Vbezbso) / 100m - Fvbso;
                 // TODO aufrunden auf ganze euro
                 Fvbzso = Fvbz + Vbezbso / 100m;
+                Fvbzso = Math.Round(Fvbzso, 0, MidpointRounding.ToPositiveInfinity);
                 if (Fvbzso > Hfvbzso)
                 {
                     // TODO aufrunden auf ganze euro
                     Fvbzso = Hfvbzso;
+                    Fvbzso = Math.Round(Fvbzso, 0, MidpointRounding.ToPositiveInfinity);
                 }
                 if (Fvbzso > Tab(3, J))
                 {
@@ -158,13 +182,17 @@ namespace brutto_netto_rechner.classes
                 {
                     // TODO aufrunden auf ganze euro
                     Fvbz = Hfvbz;
+                    Fvbz = Math.Round(Fvbz, 0, MidpointRounding.ToPositiveInfinity);
                 }
             }
             Mre4alte();
         }
         private void Mre4alte() 
         { 
-            if (Alter1 ==0)
+            if (Alter1 == 0)
+            {
+                Alte = decimal.Zero;
+            } else
             {
                 if (Ajahr < 2006)
                 {
@@ -178,15 +206,13 @@ namespace brutto_netto_rechner.classes
                 }
                 Bmg = Zre4j - Zvbezj;
                 // TODO aufrunden auf ganze euro
-                Alte = Bmg * Tab(4, J);
-                Hbalte = Tab(5, J);
+                Alte = Bmg * Tab(4, K);
+                Alte = Math.Round(Alte, 0, MidpointRounding.ToPositiveInfinity);
+                Hbalte = Tab(5, K);
                 if (Alte > Hbalte)
                 {
                     Alte = Hbalte;
                 }
-            } else
-            {
-                Alte = decimal.Zero;
             }
         }
         private void Mre4abz()
@@ -199,6 +225,7 @@ namespace brutto_netto_rechner.classes
             Zre4vp = Zre4j;
             if (Kennvmt == 2)
             {
+                // TODO -=
                 Zre4vp = Zre4vp - Entsch / 100m;
             }
             Zvbez = Zvbezj - Fvb;
@@ -253,9 +280,10 @@ namespace brutto_netto_rechner.classes
                     {
                         // TODO aufrunden auf ganze euro
                         Anp = Zvbez - Fvbz;
+                        Anp = Math.Round(Anp, 0, MidpointRounding.ToPositiveInfinity);
                     } else
                     {
-                        Anp = 102;
+                        Anp = 102m;
                     }
                 }
             } else
@@ -270,10 +298,11 @@ namespace brutto_netto_rechner.classes
                     if (Zre4 - Zvbez < 1230)
                     {
                         // TODO aufrunden auf ganze euro
-                        Anp += Zre4 - Zvbez;
+                        Anp = Anp + Zre4 - Zvbez;
+                        Anp = Math.Round(Anp, 0, MidpointRounding.ToPositiveInfinity);
                     } else
                     {
-                        Anp += 1230;
+                        Anp += 1230m;
                     }
                 }
             }
@@ -323,6 +352,7 @@ namespace brutto_netto_rechner.classes
                     {
                         // TODO aufrunden auf ganze euro
                         Anp = Zvbez - Fvbz;
+                        Anp = Math.Round(Anp, 0, MidpointRounding.ToPositiveInfinity);
                     } else
                     {
                         Anp = 102m;
@@ -338,10 +368,11 @@ namespace brutto_netto_rechner.classes
                 if (Zre4 - Zvbez < 1230)
                 {
                     // TODO aufrunden auf ganze euro
-                    Anp += Zre4 - Zvbez;
+                    Anp = Anp + Zre4 - Zvbez;
+                    Anp = Math.Round(Anp, 0, MidpointRounding.ToPositiveInfinity);
                 } else
                 {
-                    Anp += 1230;
+                    Anp += 1230m;
                 }
             }
             Kztab = 1;
@@ -394,7 +425,7 @@ namespace brutto_netto_rechner.classes
                 {
                     Upmlst();
                     Stovmt = St;
-                    Zve += (Vmt + Vkapa) / 500;
+                    Zve = Zve + (Vmt + Vkapa) / 500m;
                     Upmlst();
                     St = (St - Stovmt) * 5m + Stovmt;
                 }
@@ -416,7 +447,7 @@ namespace brutto_netto_rechner.classes
                     Vsp3 = Pkpv * 12m / 100m;
                     if (Pkv == 2)
                     {
-                        Vsp3 -= Zre4vp * (Kvsatzag + Pvsatzag);
+                        Vsp3 = Vsp3 - Zre4vp * (Kvsatzag + Pvsatzag);
                     }
                 }
             } else
@@ -425,6 +456,7 @@ namespace brutto_netto_rechner.classes
             }
             // TODO aufrunden auf ganze euro
             Vsp = Vsp3 + Vsp1;
+            Vsp = Math.Round(Vsp, 0, MidpointRounding.ToPositiveInfinity);
         }
         private void Mst5_6()
         {
@@ -437,12 +469,15 @@ namespace brutto_netto_rechner.classes
                 {
                     // TODO abrunden auf ganze euro
                     St += (W3stkl5 - W2stkl5) * 0.42m;
+                    St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
                     // TODO abrunden auf ganze euro
                     St += (Zzx - W3stkl5) * 0.45m;
+                    St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
                 } else
                 {
                     // TODO abrunden auf ganze euro
                     St += (Zzx - W2stkl5) * 0.42m;
+                    St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
                 }
             } else
             {
@@ -455,6 +490,7 @@ namespace brutto_netto_rechner.classes
                     Up5_6();
                     // TODO abrunden auf ganze euro
                     Hoch = St + (Zzx - W1stkl5) * 0.42m;
+                    Hoch = Math.Round(Hoch, 0, MidpointRounding.ToNegativeInfinity);
                     if (Hoch < Vergl)
                     {
                         St = Hoch;
@@ -472,6 +508,7 @@ namespace brutto_netto_rechner.classes
             {
                 // TODO abrunden auf ganze cents
                 Solzj = Jbmg * 5.5m / 100m;
+                Solzj = Math.Round(Solzj, 2, MidpointRounding.ToNegativeInfinity);
                 Solzmin = (Jbmg - Solzfrei) * 11.9m / 100m;
                 if (Solzmin < Solzj)
                 {
@@ -480,10 +517,10 @@ namespace brutto_netto_rechner.classes
                 Jw = Solzj * 100m;
                 if (Schleifz == 1)
                 {
-                    Jwbka = Jw;
+                    Jwsolza = Jw;
                 } else
                 {
-                    Jwbkn = Jw;
+                    Jwsolzn = Jw;
                 }
                 Upanteil();
                 Solzlzz = Anteil1;
@@ -505,7 +542,7 @@ namespace brutto_netto_rechner.classes
                 Bk = Anteil1;
             } else
             {
-                Bk = 0;
+                Bk = decimal.Zero;
             }
         }
         private void Mlst1224()
@@ -530,7 +567,7 @@ namespace brutto_netto_rechner.classes
                     Upanteil();
                 }
                 Solzlzz = Anteil1;
-                Jw = Jwbkn - 11 * (Jwbka - Jwbkn);
+                Jw = Jwbkn - 11m * (Jwbka - Jwbkn);
                 if (Jw < 0)
                 {
                     Anteil1 = decimal.Zero;
@@ -573,7 +610,9 @@ namespace brutto_netto_rechner.classes
                 Upvkv();
                 Vkvsonst = Vkv - Vkvsonst;
                 Lstso = St * 100m;
+                // TODO runden auf ganze Euro !!! SPECIAL !!!
                 Sts = (Lstso - Lstoso) * F;
+                Sts = Math.Round(Sts, 0, MidpointRounding.ToNegativeInfinity);
                 Stsmin();
             }
         }
@@ -594,6 +633,7 @@ namespace brutto_netto_rechner.classes
             {
                 // TODO abrunden auf ganze euro
                 X = Solzszve / Kztab;
+                X = Math.Round(X, 0, MidpointRounding.ToNegativeInfinity);
             }
             if (Stkl < 5)
             {
@@ -604,10 +644,12 @@ namespace brutto_netto_rechner.classes
             }
             // TODO abrunden auf ganze euro
             Solzsbmg = St * F;
+            Solzsbmg = Math.Round(Solzsbmg, 0, MidpointRounding.ToNegativeInfinity);
             if (Solzsbmg > Solzfrei)
             {
                 // TODO abrunden auf ganze cents
                 Solzs = Sts * 5.5m / 100m;
+                Solzs = Math.Round(Solzs, 2, MidpointRounding.ToNegativeInfinity);
             }
             else
             {
@@ -655,13 +697,16 @@ namespace brutto_netto_rechner.classes
                     Stv = decimal.Zero;
                 } else
                 {
+                    // TODO abrunden auf ganze Euro
                     Stv *= F;
+                    Stv = Math.Round(Stv, 0, MidpointRounding.ToNegativeInfinity);
                 }
                 Solzvbmg = Stv / 100m + Jbmg;
                 if (Solzvbmg > Solzfrei)
                 {
                     // TODO abrunden auf ganze cents
                     Solzv = Stv * 5.5m / 100m;
+                    Solzv = Math.Round(Solzv, 2, MidpointRounding.ToNegativeInfinity);
                 } else
                 {
                     Solzv = decimal.Zero;
@@ -690,7 +735,7 @@ namespace brutto_netto_rechner.classes
             Mre4abz();
             Zre4vp = Zre4vp - Jre4ent / 100m;
             Mztabfbn();
-            Vfrbs1 = (Anp * Fvb + Fvbz) * 100m;
+            Vfrbs1 = (Anp + Fvb + Fvbz) * 100m;
             Mlstjahr();
             Wvfrbo = (Zve - Gfb) * 100m;
             if (Wvfrbo < 0)
@@ -704,7 +749,7 @@ namespace brutto_netto_rechner.classes
             Mre4();
             Fvb = Fvbso;
             Mre4abz();
-            Zre4vp += Mbv / 100m - Jre4ent / 100m - Sonstent / 100m;
+            Zre4vp = Zre4vp + Mbv / 100m - Jre4ent / 100m - Sonstent / 100m;
             Fvbz = Fvbzso;
             Mztabfbn();
             Vfrbs2 = (Anp + Fvb + Fvbz) * 100m - Vfrbs1;
@@ -722,6 +767,7 @@ namespace brutto_netto_rechner.classes
                     }
                     // TODO abrunden auf ganze cents
                     Solzlzz += Sts * 5.5m / 100m;
+                    Solzlzz = Math.Round(Solzlzz, 2, MidpointRounding.ToNegativeInfinity);
                     if (Solzlzz < 0)
                     {
                         Solzlzz = decimal.Zero;
@@ -759,6 +805,7 @@ namespace brutto_netto_rechner.classes
                 Rw += 1400m;
                 // TODO abrunde auf ganze euro
                 St = Rw * Y;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
             else if (X < 66761)
             {
@@ -767,17 +814,20 @@ namespace brutto_netto_rechner.classes
                 Rw += 2397m;
                 Rw *= Y;
                 // TODO abrunde auf ganze euro
-                St = Rw * 1025.38m;
+                St = Rw + 1025.38m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
             else if (X < 277826)
             {
                 // TODO abrunde auf ganze euro
                 St = X * 0.42m - 10602.13m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
             else
             {
                 // TODO abrunde auf ganze euro
                 St = X * 0.45m - 18936.88m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
             St *= Kztab;
         }
@@ -793,6 +843,7 @@ namespace brutto_netto_rechner.classes
                 Rw += 1400m;
                 // TODO abrunde auf ganze euro
                 St = Rw * Y;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             } else if (X < 66761)
             {
                 Y = (X - 17005m) / 10000m;
@@ -801,15 +852,19 @@ namespace brutto_netto_rechner.classes
                 Rw *= Y;
                 // TODO abrunde auf ganze euro
                 St = Rw + 991.21m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             } else if (X < 277826)
             {
                 // TODO abrunde auf ganze euro
                 St = X * 0.42m - 10636.31m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             } else
             {
                 // TODO abrunde auf ganze euro
                 St = X * 0.45m - 18971.06m;
+                St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
+            St *= Kztab;
         }
         private void Upanteil()
         {
@@ -821,14 +876,17 @@ namespace brutto_netto_rechner.classes
                 case 2:
                     // TODO ergebnis aufrunden
                     Anteil1 = Jw / 12m;
+                    Anteil1 = Math.Round(Anteil1, 2, MidpointRounding.ToPositiveInfinity);
                     break;
                 case 3:
                     // TODO ergebnis aufrunden
                     Anteil1 = Jw * 7m / 360m;
+                    Anteil1 = Math.Round(Anteil1, 2, MidpointRounding.ToPositiveInfinity);
                     break;
                 default:
                     // TODO ergebnis aufrunden
                     Anteil1 = Jw / 360m;
+                    Anteil1 = Math.Round(Anteil1, 2, MidpointRounding.ToPositiveInfinity);
                     break;
             }
         }
@@ -853,7 +911,9 @@ namespace brutto_netto_rechner.classes
             }
             St2 = St;
             Diff = (St1 - St2) * 2m;
+            // TODO abrunden auf ganze Euro
             Mist = Zx * 0.14m;
+            Mist = Math.Round(Mist, 0, MidpointRounding.ToNegativeInfinity);
             if (Mist > Diff)
             {
                 St = Mist;
@@ -895,7 +955,7 @@ namespace brutto_netto_rechner.classes
             {
                 Jwlstn = Jw;
             }
-            Upabteil();
+            Upanteil();
             Lstlzz = Anteil1;
         }
         private void Upmlst()
@@ -908,6 +968,7 @@ namespace brutto_netto_rechner.classes
             {
                 // TODO abrunden auf ganze euro
                 X = Zve / Kztab;
+                X = Math.Round(X, 0, MidpointRounding.ToNegativeInfinity);
             }
             if ( Stkl < 5)
             {
@@ -939,10 +1000,10 @@ namespace brutto_netto_rechner.classes
             Vsp2 = 0.12m * Zre4vp;
             if (Stkl == 3)
             {
-                Vhb = 3000;
+                Vhb = 3000m;
             } else
             {
-                Vhb = 1900;
+                Vhb = 1900m;
             }
             if (Vsp2 > Vhb)
             {
@@ -950,6 +1011,7 @@ namespace brutto_netto_rechner.classes
             }
             // TODO aufrunden auf ganze euro
             Vspn = Vsp1 + Vsp2;
+            Vspn = Math.Round(Vspn, 0, MidpointRounding.ToPositiveInfinity);
             Mvsp();
             if (Vspn > Vsp)
             {

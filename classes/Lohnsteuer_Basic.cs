@@ -13,56 +13,56 @@ namespace brutto_netto_rechner.classes
 
         // Eingabeparameter
 
-        protected long Af { get; set; } = 0;
-        protected long Ajahr { get; set; } = 0;
-        protected long Alter1 { get; set; } = 0;
-        protected decimal Entsch { get; set; } = decimal.Zero;
-        protected decimal F { get; set; } = decimal.Zero;
-        protected decimal Jfreib { get; set; } = decimal.Zero;
-        protected decimal Jhinzu { get; set; } = decimal.Zero;
-        protected decimal Jre4 { get; set; } = decimal.Zero;
-        protected decimal Jre4ent { get; set; } = decimal.Zero;
-        protected decimal Jvbez { get; set; } = decimal.Zero;
-        protected long Krv { get; set; } = 0;
-        protected decimal Kvz { get; set; } = decimal.Zero;
-        protected long Lzz { get; set; } = 0;
-        protected decimal Lzzfreib { get; set; } = decimal.Zero;
-        protected decimal Lzzhinzu { get; set; } = decimal.Zero;
-        protected decimal Mbv { get; set; } = decimal.Zero;
-        protected decimal Pkpv { get; set; } = decimal.Zero;
-        protected long Pkv { get; set; } = 0;
-        protected long Pva { get; set; } = 0;
-        protected long Pvs { get; set; } = 0;
-        protected long Pvz { get; set; } = 0;
-        protected long R { get; set; } = 0;
-        protected decimal Re4 { get; set; } = decimal.Zero;
-        protected decimal Sonstb { get; set; } = decimal.Zero;
-        protected decimal Sonstent { get; set; } = decimal.Zero;
-        protected decimal Sterbe { get; set; } = decimal.Zero;
-        protected long Stkl { get; set; } = 0;
-        protected decimal Vbez { get; set; } = decimal.Zero;
-        protected decimal Vbezm { get; set; } = decimal.Zero;
-        protected decimal Vbezs { get; set; } = decimal.Zero;
-        protected decimal Vbs { get; set; } = decimal.Zero;
-        protected long Vjahr { get; set; } = 0;
-        protected decimal Vkapa { get; set; } = decimal.Zero;
-        protected decimal Vmt { get; set; } = decimal.Zero;
-        protected decimal Zkf { get; set; } = decimal.Zero;
-        protected long Zmvb { get; set; } = 0;
+        public long Af { get; set; } = 0;
+        public long Ajahr { get; set; } = 0;
+        public long Alter1 { get; set; } = 0;
+        public decimal Entsch { get; set; } = decimal.Zero;
+        public decimal F { get; set; } = decimal.Zero;
+        public decimal Jfreib { get; set; } = decimal.Zero;
+        public decimal Jhinzu { get; set; } = decimal.Zero;
+        public decimal Jre4 { get; set; } = decimal.Zero;
+        public decimal Jre4ent { get; set; } = decimal.Zero;
+        public decimal Jvbez { get; set; } = decimal.Zero;
+        public long Krv { get; set; } = 0;
+        public decimal Kvz { get; set; } = decimal.Zero;
+        public long Lzz { get; set; } = 0;
+        public decimal Lzzfreib { get; set; } = decimal.Zero;
+        public decimal Lzzhinzu { get; set; } = decimal.Zero;
+        public decimal Mbv { get; set; } = decimal.Zero;
+        public decimal Pkpv { get; set; } = decimal.Zero;
+        public long Pkv { get; set; } = 0;
+        public long Pva { get; set; } = 0;
+        public long Pvs { get; set; } = 0;
+        public long Pvz { get; set; } = 0;
+        public long R { get; set; } = 0;
+        public decimal Re4 { get; set; } = decimal.Zero;
+        public decimal Sonstb { get; set; } = decimal.Zero;
+        public decimal Sonstent { get; set; } = decimal.Zero;
+        public decimal Sterbe { get; set; } = decimal.Zero;
+        public long Stkl { get; set; } = 0;
+        public decimal Vbez { get; set; } = decimal.Zero;
+        public decimal Vbezm { get; set; } = decimal.Zero;
+        public decimal Vbezs { get; set; } = decimal.Zero;
+        public decimal Vbs { get; set; } = decimal.Zero;
+        public long Vjahr { get; set; } = 0;
+        public decimal Vkapa { get; set; } = decimal.Zero;
+        public decimal Vmt { get; set; } = decimal.Zero;
+        public decimal Zkf { get; set; } = decimal.Zero;
+        public long Zmvb { get; set; } = 0;
 
         // Ausgabeparameter
 
-        protected decimal Bk { get; set; } = decimal.Zero;
-        protected decimal Bks { get; set; } = decimal.Zero;
-        protected decimal Bkv { get; set; } = decimal.Zero;
-        protected decimal Lstlzz { get; set; } = decimal.Zero;
-        protected decimal Solzlzz { get; set; } = decimal.Zero;
-        protected decimal Solzs { get; set; } = decimal.Zero;
-        protected decimal Solzv { get; set; } = decimal.Zero;
-        protected decimal Sts { get; set; } = decimal.Zero;
-        protected decimal Stv { get; set; } = decimal.Zero;
-        protected decimal Vkvlzz { get; set; } = decimal.Zero;
-        protected decimal Vkvsonst { get; set; } = decimal.Zero;
+        public decimal Bk { get; set; } = decimal.Zero;
+        public decimal Bks { get; set; } = decimal.Zero;
+        public decimal Bkv { get; set; } = decimal.Zero;
+        public decimal Lstlzz { get; set; } = decimal.Zero;
+        public decimal Solzlzz { get; set; } = decimal.Zero;
+        public decimal Solzs { get; set; } = decimal.Zero;
+        public decimal Solzv { get; set; } = decimal.Zero;
+        public decimal Sts { get; set; } = decimal.Zero;
+        public decimal Stv { get; set; } = decimal.Zero;
+        public decimal Vkvlzz { get; set; } = decimal.Zero;
+        public decimal Vkvsonst { get; set; } = decimal.Zero;
 
         // interne Felder or Ausgabeparamter DBA (Doppelbesterungsabkommen)
 
@@ -166,17 +166,17 @@ namespace brutto_netto_rechner.classes
 
         // eigene Felder
 
-        protected decimal Rentenversicherung { get; set; } = decimal.Zero;
-        protected decimal Arbeitslosenversicherung { get; set; } = decimal.Zero;
-        protected decimal Krankenversicherung { get; set; } = decimal.Zero;
-        protected decimal Pflegeversicherung_Arbeitnehmer { get; set; } = decimal.Zero;
-        protected decimal Pflegeversicherung_Arbeitgeber { get; set; } = decimal.Zero;
-        protected decimal Kirschensteuer { get; set; } = decimal.Zero;
-        protected decimal Gesamt_steuer { get; set; } = decimal.Zero;
-        protected decimal Summe_Socialversicherung_Aarbeitnehmer { get; set; } = decimal.Zero;
-        protected decimal Summe_Socialversicherung_Aarbeitgeber { get; set; } = decimal.Zero;
-        protected decimal Netto_lohn { get; set; } = decimal.Zero;
-        protected decimal Gesamt_belastung_Arbeitgeber { get; set; } = decimal.Zero;
+        public decimal Rentenversicherung { get; set; } = decimal.Zero;
+        public decimal Arbeitslosenversicherung { get; set; } = decimal.Zero;
+        public decimal Krankenversicherung { get; set; } = decimal.Zero;
+        public decimal Pflegeversicherung_Arbeitnehmer { get; set; } = decimal.Zero;
+        public decimal Pflegeversicherung_Arbeitgeber { get; set; } = decimal.Zero;
+        public decimal Kirschensteuer { get; set; } = decimal.Zero;
+        public decimal Gesamt_steuer { get; set; } = decimal.Zero;
+        public decimal Summe_Socialversicherung_Aarbeitnehmer { get; set; } = decimal.Zero;
+        public decimal Summe_Socialversicherung_Aarbeitgeber { get; set; } = decimal.Zero;
+        public decimal Netto_lohn { get; set; } = decimal.Zero;
+        public decimal Gesamt_belastung_Arbeitgeber { get; set; } = decimal.Zero;
 
         protected decimal Tab(int tab, long j)
         {
