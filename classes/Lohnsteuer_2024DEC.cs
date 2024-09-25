@@ -10,9 +10,74 @@ namespace brutto_netto_rechner.classes
 {
     internal class Lohnsteuer_2024DEC : Lohnsteuer_Basic
     {
-        public void Start()
+        public override void Start()
         {
             Lohnsteuer_2024();
+        }
+        protected override void Sozialversicherung()
+        {
+            Arbeitslosenversicherung_Berechnung();
+            Krankenversicherung_Berechnung();
+            Pflegeversicherung_Berechnung();
+            Rentenversicherung_Berechnung();
+        }
+        protected override void Arbeitslosenversicherung_Berechnung()
+        {
+            const decimal Arbeitsversicherungsanteil = 0.013m;
+            Arbeitslosenversicherung = Re4 * Arbeitsversicherungsanteil;
+        }
+        protected override void Krankenversicherung_Berechnung()
+        {
+            const decimal Krankenversicherungsanteil = 0.073m;
+            decimal Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil = Kvz / 2m;
+            Krankenversicherung = Re4 * (Krankenversicherungsanteil + Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil);
+        }
+        protected override void Pflegeversicherung_Berechnung()
+        {
+            const decimal Pflegeversicherungsanteil = 1.7m;
+            const decimal Pflegeversicherungsanteil_Sachen = 2.2m;
+            const decimal Pflegeversicherungsanteil_Zuschlag = 0.6m;
+
+            decimal Pflegeversicherung_Zusammen;
+            decimal Pflegeversicherung_Arbeitgeber_Zusammen;
+
+            if (Pvs == 1)
+            {
+                if (Pvz == 0)
+                {
+                    Pflegeversicherung_Zusammen = Pflegeversicherungsanteil_Sachen;
+                }
+                else
+                {
+                    Pflegeversicherung_Zusammen = Pflegeversicherungsanteil_Sachen + Pflegeversicherungsanteil_Zuschlag;
+                }
+                Pflegeversicherung_Arbeitgeber_Zusammen = Pflegeversicherungsanteil_Sachen - 1m; // Sachen Arbeitgeber Zahlt weniger
+            }
+            else
+            {
+                if (Pvz == 0)
+                {
+                    Pflegeversicherung_Zusammen = Pflegeversicherungsanteil;
+                }
+                else
+                {
+                    Pflegeversicherung_Zusammen = Pflegeversicherungsanteil + Pflegeversicherungsanteil_Zuschlag;
+                }
+                Pflegeversicherung_Arbeitgeber_Zusammen = Pflegeversicherungsanteil;
+            }
+
+            Pflegeversicherung_Arbeitnehmer = Re4 * (Pflegeversicherung_Zusammen / 100m);
+            Pflegeversicherung_Arbeitgeber = Re4 * (Pflegeversicherung_Arbeitgeber_Zusammen / 100m);
+        }
+        protected override void Rentenversicherung_Berechnung()
+        {
+            const decimal Rentenversicherungsanteil = 0.093m;
+            Rentenversicherung = Re4 * Rentenversicherungsanteil;
+        }
+        protected void Kirchensteuer_Berechnung()
+        {
+            const decimal Kirchensteueranteil = 0.09m;
+            Kirchensteuer = Lstlzz * Kirchensteueranteil;
         }
         private void Lohnsteuer_2024()
         {
@@ -33,6 +98,9 @@ namespace brutto_netto_rechner.classes
             Mlst1224();
             Msonst();
             Mvmt();
+            Sozialversicherung();
+            Kirchensteuer_Berechnung();
+            Zusammenrechnen();
         }
         private void Mpara()
         {

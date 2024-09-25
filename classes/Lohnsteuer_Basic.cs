@@ -171,13 +171,27 @@ namespace brutto_netto_rechner.classes
         public decimal Krankenversicherung { get; set; } = decimal.Zero;
         public decimal Pflegeversicherung_Arbeitnehmer { get; set; } = decimal.Zero;
         public decimal Pflegeversicherung_Arbeitgeber { get; set; } = decimal.Zero;
-        public decimal Kirschensteuer { get; set; } = decimal.Zero;
+        public decimal Kirchensteuer { get; set; } = decimal.Zero;
         public decimal Gesamt_steuer { get; set; } = decimal.Zero;
         public decimal Summe_Socialversicherung_Aarbeitnehmer { get; set; } = decimal.Zero;
         public decimal Summe_Socialversicherung_Aarbeitgeber { get; set; } = decimal.Zero;
         public decimal Netto_lohn { get; set; } = decimal.Zero;
         public decimal Gesamt_belastung_Arbeitgeber { get; set; } = decimal.Zero;
 
+        public abstract void Start();
+        protected abstract void Sozialversicherung();
+        protected abstract void Arbeitslosenversicherung_Berechnung();
+        protected abstract void Krankenversicherung_Berechnung();
+        protected abstract void Pflegeversicherung_Berechnung();
+        protected abstract void Rentenversicherung_Berechnung();
+        protected void Zusammenrechnen()
+        {
+            Gesamt_steuer = Lstlzz + Solzlzz + Kirchensteuer;
+            Summe_Socialversicherung_Aarbeitnehmer = Rentenversicherung + Arbeitslosenversicherung + Krankenversicherung + Pflegeversicherung_Arbeitnehmer;
+            Summe_Socialversicherung_Aarbeitgeber = Rentenversicherung + Arbeitslosenversicherung + Krankenversicherung + Pflegeversicherung_Arbeitgeber;
+            Netto_lohn = Re4 - (Gesamt_steuer + Summe_Socialversicherung_Aarbeitnehmer);
+            Gesamt_belastung_Arbeitgeber = Re4 + Summe_Socialversicherung_Aarbeitgeber;
+        }
         protected decimal Tab(int tab, long j)
         {
             if (j <= 15)

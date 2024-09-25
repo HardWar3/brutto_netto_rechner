@@ -32,7 +32,7 @@ namespace brutto_netto_rechner
 
             keks.Start();
 
-            keks.Gesamt_steuer = keks.Lstlzz + keks.Solzlzz + keks.Kirschensteuer;
+            keks.Gesamt_steuer = keks.Lstlzz + keks.Solzlzz + keks.Kirchensteuer;
 
 
             Console.WriteLine(keks.Gesamt_steuer);
