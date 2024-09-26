@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using brutto_netto_rechner.classes;
+using Serilog;
 
 namespace brutto_netto_rechner
 {
@@ -14,29 +15,51 @@ namespace brutto_netto_rechner
         static void Main(string[] args)
         {
             // TODO LOGGER
+#if DEBUG
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs/debug_log.txt")
+                .CreateLogger();
+#else
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log.txt")
+                .CreateLogger();
+#endif
+
+
+            Log.Debug("KEKS_DEBUG");
+            Log.Information("KEKS_INFO");
+
             Console.WriteLine("hello, world!");
 
             var keks = new Lohnsteuer_2024DEC();
 
             keks.Krv = 0;
             keks.Pkv = 0;
+            //keks.Pkpv = 0m;
             keks.Kvz = 1.7m;
+            //keks.Kvz = 0m;
             keks.Pvz = 1;
             keks.Stkl = 6;
 
             keks.Ajahr = 1988;
-            keks.Alter1 = 0;
+            keks.Alter1 = 1;
             keks.Lzz = 1;
-            keks.Re4 = 5500000m;
+            keks.Re4 = 3000000m;
             keks.Jre4 = keks.Re4;
+
 
             keks.Start();
 
             keks.Gesamt_steuer = keks.Lstlzz + keks.Solzlzz + keks.Kirchensteuer;
 
 
-            Console.WriteLine(keks.Gesamt_steuer);
-            Console.WriteLine(keks.Lstlzz);
+            Console.WriteLine(keks.Gesamt_steuer / 100 + " gesamt Steuer");
+            Console.WriteLine(keks.Summe_Socialversicherung_Arbeitnehmer / 100 + " Summe SV");
+            Console.WriteLine(keks.Lstlzz / 100 + " Lohnsteuer");
+            Console.WriteLine(keks.Netto_lohn / 100 + " NETTO");
         }
     }
 }

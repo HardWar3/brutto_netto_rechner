@@ -24,13 +24,13 @@ namespace brutto_netto_rechner.classes
         protected override void Arbeitslosenversicherung_Berechnung()
         {
             const decimal Arbeitsversicherungsanteil = 0.013m;
-            Arbeitslosenversicherung = Re4 * Arbeitsversicherungsanteil;
+            Arbeitslosenversicherung = Math.Round(Re4 * Arbeitsversicherungsanteil);
         }
         protected override void Krankenversicherung_Berechnung()
         {
             const decimal Krankenversicherungsanteil = 0.073m;
-            decimal Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil = Kvz / 2m;
-            Krankenversicherung = Re4 * (Krankenversicherungsanteil + Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil);
+            decimal Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil = (Kvz / 2m) / 100m;
+            Krankenversicherung = Math.Round(Re4 * (Krankenversicherungsanteil + Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil), 2);
         }
         protected override void Pflegeversicherung_Berechnung()
         {
@@ -66,18 +66,21 @@ namespace brutto_netto_rechner.classes
                 Pflegeversicherung_Arbeitgeber_Zusammen = Pflegeversicherungsanteil;
             }
 
-            Pflegeversicherung_Arbeitnehmer = Re4 * (Pflegeversicherung_Zusammen / 100m);
-            Pflegeversicherung_Arbeitgeber = Re4 * (Pflegeversicherung_Arbeitgeber_Zusammen / 100m);
+            Pflegeversicherung_Arbeitnehmer = Math.Round(Re4 * (Pflegeversicherung_Zusammen / 100m), 2);
+            Pflegeversicherung_Arbeitgeber = Math.Round(Re4 * (Pflegeversicherung_Arbeitgeber_Zusammen / 100m), 2);
         }
         protected override void Rentenversicherung_Berechnung()
         {
             const decimal Rentenversicherungsanteil = 0.093m;
-            Rentenversicherung = Re4 * Rentenversicherungsanteil;
+            Rentenversicherung = Math.Round(Re4 * Rentenversicherungsanteil, 2);
         }
         protected void Kirchensteuer_Berechnung()
         {
-            const decimal Kirchensteueranteil = 0.09m;
-            Kirchensteuer = Lstlzz * Kirchensteueranteil;
+            if (R != 0)
+            {
+                const decimal Kirchensteueranteil = 0.09m;
+                Kirchensteuer = Math.Round(Lstlzz * Kirchensteueranteil);
+            }
         }
         private void Lohnsteuer_2024()
         {
