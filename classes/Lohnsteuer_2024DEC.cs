@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Serilog;
 
 namespace brutto_netto_rechner.classes
 {
@@ -12,10 +13,14 @@ namespace brutto_netto_rechner.classes
     {
         public override void Start()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Start()");
+
             Lohnsteuer_2024();
         }
         protected override void Sozialversicherung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Sozialversicherung()");
+
             Arbeitslosenversicherung_Berechnung();
             Krankenversicherung_Berechnung();
             Pflegeversicherung_Berechnung();
@@ -23,17 +28,23 @@ namespace brutto_netto_rechner.classes
         }
         protected override void Arbeitslosenversicherung_Berechnung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Arbeitslosenversicherung_Berechnung()");
+
             const decimal Arbeitsversicherungsanteil = 0.013m;
             Arbeitslosenversicherung = Math.Round(Re4 * Arbeitsversicherungsanteil);
         }
         protected override void Krankenversicherung_Berechnung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Krankenversicherung_Berechnung()");
+
             const decimal Krankenversicherungsanteil = 0.073m;
             decimal Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil = (Kvz / 2m) / 100m;
             Krankenversicherung = Math.Round(Re4 * (Krankenversicherungsanteil + Krankenversicherungs_Zusatzbeitrag_Arbteitsnehmeranteil), 2);
         }
         protected override void Pflegeversicherung_Berechnung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Pflegeversicherung_Berechnung()");
+
             const decimal Pflegeversicherungsanteil = 1.7m;
             const decimal Pflegeversicherungsanteil_Sachen = 2.2m;
             const decimal Pflegeversicherungsanteil_Zuschlag = 0.6m;
@@ -71,11 +82,15 @@ namespace brutto_netto_rechner.classes
         }
         protected override void Rentenversicherung_Berechnung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Rentenversicherung_Berechnung()");
+
             const decimal Rentenversicherungsanteil = 0.093m;
             Rentenversicherung = Math.Round(Re4 * Rentenversicherungsanteil, 2);
         }
         protected void Kirchensteuer_Berechnung()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Kirchensteuer_Berechnung()");
+
             if (R != 0)
             {
                 const decimal Kirchensteueranteil = 0.09m;
@@ -84,6 +99,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Lohnsteuer_2024()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Lohnsteuer_2024()");
+
             Mpara();
             Mre4jl();
             Vbezbso = decimal.Zero;
@@ -107,6 +124,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mpara()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mpara()");
+
             if (Krv < 2)
             {
                 if (Krv == 0)
@@ -150,6 +169,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mre4jl()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mre4jl()");
+
             switch (Lzz)
             {
                 case 1:
@@ -184,6 +205,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mre4()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mre4()");
+
             if (Zvbezj == 0)
             {
                 Fvbz = decimal.Zero;
@@ -259,7 +282,9 @@ namespace brutto_netto_rechner.classes
             Mre4alte();
         }
         private void Mre4alte() 
-        { 
+        {
+            Log.Debug("Lohnsteuer_2024DEC.Mre4alte()");
+
             if (Alter1 == 0)
             {
                 Alte = decimal.Zero;
@@ -288,6 +313,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mre4abz()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mre4abz()");
+
             Zre4 = Zre4j - Fvb - Alte - Jlfreib + Jlhinzu;
             if (Zre4 < 0)
             {
@@ -296,7 +323,6 @@ namespace brutto_netto_rechner.classes
             Zre4vp = Zre4j;
             if (Kennvmt == 2)
             {
-                // TODO -=
                 Zre4vp = Zre4vp - Entsch / 100m;
             }
             Zvbez = Zvbezj - Fvb;
@@ -307,6 +333,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mberech()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mberech()");
+
             if (Schleifz == 1)
             {
                 Mztabfba();
@@ -338,6 +366,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mztabfba()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mztabfba()");
+
             Anp = decimal.Zero;
             if (Zvbez >= 0 && Zvbez < Fvbz) 
             {
@@ -410,6 +440,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mztabfbn()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mztabfbn()");
+
             Anp = decimal.Zero;
             if (Zvbez >= 0 && Zvbez < Fvbz)
             {
@@ -479,6 +511,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mlstjahr()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mlstjahr()");
+
             Upevp();
             if (Kennvmt != 1)
             {
@@ -504,6 +538,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mvsp()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mvsp()");
+
             if (Zre4vp > Bbgkvpv)
             {
                 Zre4vp = Bbgkvpv;
@@ -531,6 +567,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mst5_6()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mst5_6()");
+
             Zzx = X;
             if (Zzx > W2stkl5)
             {
@@ -574,6 +612,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Msolz()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Msolz()");
+
             Solzfrei *= Kztab;
             if (Jbmg > Solzfrei)
             {
@@ -618,6 +658,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mlst1224()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mlst1224()");
+
             if (Lzz > 1)
             {
                 Jw = Jwlstn - 11m * (Jwlsta - Jwlstn);
@@ -651,6 +693,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Msonst()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Msonst()");
+
             Lzz = 1;
             if (Zmvb == 0)
             {
@@ -689,6 +733,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Msolzsts()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Msolzsts()");
+
             if (Zkf > 0)
             {
                 Solzszve = Zve - Kfb;
@@ -729,6 +775,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mvmt()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mvmt()");
+
             if (Vkapa < 0)
             {
                 Vkapa = decimal.Zero;
@@ -752,7 +800,6 @@ namespace brutto_netto_rechner.classes
                 Mlstjahr();
                 Lst3 = St * 100m;
                 Mre4abz();
-                // TODO test -=
                 Zre4vp = Zre4vp - Jre4ent / 100m - Sonstent / 100m;
                 Kennvmt = 1;
                 Mlstjahr();
@@ -798,6 +845,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mosonst()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mosonst()");
+
             Zre4j = Jre4 / 100m;
             Zvbezj = Jvbez / 100m;
             Jlfreib = Jfreib / 100m;
@@ -817,6 +866,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Mre4sonst()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Mre4sonst()");
+
             Mre4();
             Fvb = Fvbso;
             Mre4abz();
@@ -827,6 +878,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Stsmin()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Stsmin()");
+
             if (Sts < 0)
             {
                 if (Mbv != 0)
@@ -865,6 +918,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Uptab24a()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Uptab24a()");
+
             if (X < Gfb + 1)
             {
                 St = decimal.Zero;
@@ -904,6 +959,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Uptab24n()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Uptab24n()");
+
             if (X < Gfb + 1)
             {
                 St = decimal.Zero;
@@ -939,6 +996,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Upanteil()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Upanteil()");
+
             switch (Lzz)
             {
                 case 1:
@@ -963,6 +1022,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Up5_6()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Up5_6()");
+
             X = Zx * 1.25m;
             if (Schleifz == 1)
             {
@@ -995,6 +1056,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Upvkvlzz()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Upvkvlzz()");
+
             Upvkv();
             Jw = Vkv;
             Upanteil();
@@ -1002,6 +1065,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Upvkv()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Upvkv()");
+
             if (Pkv > 0)
             {
                 if (Vsp2 > Vsp3)
@@ -1018,6 +1083,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Uplstlzz()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Uplstlzz()");
+
             Jw = Lstjahr * 100m;
             if (Schleifz == 1)
             {
@@ -1031,6 +1098,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Upmlst()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Upmlst()");
+
             if (Zve < 1)
             {
                 Zve = decimal.Zero;
@@ -1057,6 +1126,8 @@ namespace brutto_netto_rechner.classes
         }
         private void Upevp()
         {
+            Log.Debug("Lohnsteuer_2024DEC.Upevp()");
+
             if (Krv > 1)
             {
                 Vsp1 = decimal.Zero;

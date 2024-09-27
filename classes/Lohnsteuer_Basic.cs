@@ -187,7 +187,8 @@ namespace brutto_netto_rechner.classes
         protected abstract void Rentenversicherung_Berechnung();
         protected void Zusammenrechnen()
         {
-            Log.Debug("Lohnsteuer_Basic.Zusammenrechnen");
+            Log.Debug("Lohnsteuer_Basic.Zusammenrechnen()");
+
             Gesamt_steuer = Lstlzz + Solzlzz + Kirchensteuer;
             Summe_Socialversicherung_Arbeitnehmer = Rentenversicherung + Arbeitslosenversicherung + Krankenversicherung + Pflegeversicherung_Arbeitnehmer;
             Summe_Socialversicherung_Arbeitgeber = Rentenversicherung + Arbeitslosenversicherung + Krankenversicherung + Pflegeversicherung_Arbeitgeber;
@@ -196,7 +197,8 @@ namespace brutto_netto_rechner.classes
         }
         protected decimal Tab(int tab, long j)
         {
-            Log.Debug("Lohnsteuer_Basic.Tab - Values tab {A}, j {B}",tab,j);
+            Log.Debug("Lohnsteuer_Basic.Tab() - Values tab {A}, j {B}",tab,j);
+
             if (j <= 15)
             {
                 if (tab == 1 || tab == 4)
