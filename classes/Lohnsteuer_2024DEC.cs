@@ -13,7 +13,7 @@ namespace brutto_netto_rechner.classes
     {
         public override void Start()
         {
-            Log.Debug("Lohnsteuer_2024DEC.Start()");
+            Log.Debug("Lohnsteuer_2024DEC.Start()")
 
             Lohnsteuer_2024();
         }

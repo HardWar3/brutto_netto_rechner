@@ -28,7 +28,8 @@ namespace brutto_netto_rechner
                 .CreateLogger();
 #endif
 
-
+            // stream 
+            // wait
             Log.Debug("KEKS_DEBUG");
             Log.Information("KEKS_INFO");
 
@@ -42,10 +43,10 @@ namespace brutto_netto_rechner
             keks.Kvz = 1.7m;
             //keks.Kvz = 0m;
             keks.Pvz = 1;
-            keks.Stkl = 6;
+            keks.Stkl = 1;
 
             keks.Ajahr = 1988;
-            keks.Alter1 = 1;
+            keks.Alter1 = 0;
             keks.Lzz = 1;
             keks.Re4 = 3000000m;
             keks.Jre4 = keks.Re4;
