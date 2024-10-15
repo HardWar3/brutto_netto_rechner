@@ -725,7 +725,7 @@ namespace brutto_netto_rechner.classes
                 Upvkv();
                 Vkvsonst = Vkv - Vkvsonst;
                 Lstso = St * 100m;
-                // TODO runden auf ganze Euro !!! SPECIAL !!!
+                // TODO abrunden auf ganze Euro !!! SPECIAL !!!
                 Sts = (Lstso - Lstoso) * F;
                 Sts = Math.Round(Sts, 0, MidpointRounding.ToNegativeInfinity);
                 Stsmin();
