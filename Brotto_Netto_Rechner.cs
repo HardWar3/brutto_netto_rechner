@@ -14,7 +14,6 @@ namespace brutto_netto_rechner
     {
         static void Main(string[] args)
         {
-            // TODO LOGGER
 #if DEBUG
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -28,29 +27,23 @@ namespace brutto_netto_rechner
                 .CreateLogger();
 #endif
 
-            // stream 
-            // wait
-            Log.Debug("KEKS_DEBUG");
-            Log.Information("KEKS_INFO");
-
-            Console.WriteLine("hello, world!");
-
-            var keks = new Lohnsteuer_2024DEC();
+            //var keks = new Lohnsteuer_2024DEC();
+            var keks = new Lohnsteuer_2025();
 
             keks.Krv = 0;
             keks.Pkv = 0;
             //keks.Pkpv = 0m;
-            keks.Kvz = 1.7m;
+            //keks.Kvz = 1.7m; // 2024
+            keks.Kvz = 2.5m; // 2025
             //keks.Kvz = 0m;
-            keks.Pvz = 1;
+            keks.Pvz = 0;
             keks.Stkl = 1;
 
             keks.Ajahr = 1988;
             keks.Alter1 = 0;
-            keks.Lzz = 1;
-            keks.Re4 = 3000000m;
-            keks.Jre4 = keks.Re4;
-
+            keks.Lzz = 2;
+            keks.Re4 = 400000m;
+            keks.Jre4 = keks.Re4 * 12m;
 
             keks.Start();
 

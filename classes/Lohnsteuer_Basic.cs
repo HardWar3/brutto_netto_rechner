@@ -4,6 +4,7 @@ using System.Formats.Asn1;
 using System.Linq;
 using System.Runtime;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Serilog;
 
@@ -195,7 +196,7 @@ namespace brutto_netto_rechner.classes
             Netto_lohn = Re4 - (Gesamt_steuer + Summe_Socialversicherung_Arbeitnehmer);
             Gesamt_belastung_Arbeitgeber = Re4 + Summe_Socialversicherung_Arbeitgeber;
         }
-        protected decimal Tab(int tab, long j)
+        public decimal Tab(int tab, long j)
         {
             Log.Debug("Lohnsteuer_Basic.Tab() - Values tab {A}, j {B}",tab,j);
 
@@ -214,10 +215,10 @@ namespace brutto_netto_rechner.classes
                 {
                     return 1900 - (j - 1) * 76;
                 }
-            } else if (j >= 36)
+            } else if (j >= 54)
             {
                 return 0;
-            } else if (j >= 16)
+            } else if (j <= 17)
             {
                 if (tab == 1 || tab == 4)
                 {
@@ -231,6 +232,21 @@ namespace brutto_netto_rechner.classes
                 } else if (tab == 5)
                 {
                     return 760m - (j - 16) * 38;
+                }
+            } else if (j >= 18)
+            {
+                if (tab == 1 || tab == 4)
+                {
+                    return 0.144m - (j - 18) * 0.004m;
+                } else if (tab == 2)
+                {
+                    return 1080m - (j - 18) * 30m;
+                } else if (tab == 3) 
+                {
+                    return 324m - (j - 18) * 9m;
+                } else if (tab == 5)
+                {
+                    return 684 - (j - 18) * 19m;
                 }
             }
             return 0;
