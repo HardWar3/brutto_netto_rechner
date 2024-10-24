@@ -14,8 +14,7 @@
         Kinderfreibetrag = 10,
         KrankenversicherungsArt = 11,
         KrankenversicherungsBeitrag = 12,
-        KrankenversicherungArbeitgeberzuschuss = 13,
-        RentenversicherungsArt = 14
+        KrankenversicherungArbeitgeberzuschuss = 13
     }
 
     public enum BruttoNettoGuiFieldValues : int
