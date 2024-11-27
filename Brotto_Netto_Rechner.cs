@@ -27,14 +27,14 @@ namespace brutto_netto_rechner
                 .CreateLogger();
 #endif
 
-            var keks = new Lohnsteuer_2024DEC();
-            //var keks = new Lohnsteuer_2025();
+            //var keks = new Lohnsteuer_2024DEC();
+            var keks = new Lohnsteuer_2025();
 
             keks.Krv = 0;
             keks.Pkv = 0;
             //keks.Pkpv = 0m;
-            keks.Kvz = 1.7m; // 2024
-            //keks.Kvz = 2.5m; // 2025
+            //keks.Kvz = 1.7m; // 2024
+            keks.Kvz = 2.5m; // 2025
             //keks.Kvz = 0m;
             keks.Pvz = 1;
             keks.Stkl = 1;

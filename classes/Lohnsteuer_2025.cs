@@ -49,8 +49,8 @@ namespace brutto_netto_rechner.classes
         {
             Log.Debug("Pflegeversicherung_Berechnung()");
 
-            const decimal Pflegeversicherungsanteil = 1.7m;
-            const decimal Pflegeversicherungsanteil_Sachen = 2.2m;
+            const decimal Pflegeversicherungsanteil = 1.8m;
+            const decimal Pflegeversicherungsanteil_Sachen = 2.3m;
             const decimal Pflegeversicherungsanteil_Zuschlag = 0.6m;
 
             decimal Pflegeversicherung_Zusammen;
@@ -123,15 +123,15 @@ namespace brutto_netto_rechner.classes
             }
             Bbgkvpv = 66150m;
             Kvsatzan = Kvz / 2 / 100 + 0.07m;
-            Kvsatzag = 0.0085m + 0.07m;
+            Kvsatzag = 0.0125m + 0.07m;
             if (Pvs == 1)
             {
-                Pvsatzan = 0.022m;
-                Pvsatzag = 0.012m;
+                Pvsatzan = 0.023m;
+                Pvsatzag = 0.013m;
             } else
             {
-                Pvsatzan = 0.017m;
-                Pvsatzag = 0.017m;
+                Pvsatzan = 0.018m;
+                Pvsatzag = 0.018m;
             }
             if (Pvz == 1)
             {
@@ -141,11 +141,11 @@ namespace brutto_netto_rechner.classes
                 Pvsatzan = Pvsatzan - Pva * 0.0025m;
             }
 
-            W1stkl5 = 13772m;
-            W2stkl5 = 34214m;
+            W1stkl5 = 13432m;
+            W2stkl5 = 33380m;
             W3stkl5 = 222260m;
-            Gfb = 12084m;
-            Solzfrei = 19950m;
+            Gfb = 11784m;
+            Solzfrei = 18130m;
         }
         private void Mre4jl() 
         {
@@ -365,21 +365,21 @@ namespace brutto_netto_rechner.classes
             {
                 case 1:
                     Sap = 36m;
-                    Kfb = Zkf * 9600m;
+                    Kfb = Zkf * 9540m;
                     break;
                 case 2:
                     Efa = 4260m;
                     Sap = 36m;
-                    Kfb = Zkf * 9600m;
+                    Kfb = Zkf * 9540m;
                     break;
                 case 3:
                     Kztab = 2;
                     Sap = 36m;
-                    Kfb = Zkf * 9600m;
+                    Kfb = Zkf * 9540m;
                     break;
                 case 4:
                     Sap = 36m;
-                    Kfb = Zkf * 4800m;
+                    Kfb = Zkf * 4770m;
                     break;
                 case 5:
                     Sap = 36m;
@@ -774,28 +774,28 @@ namespace brutto_netto_rechner.classes
             if (X < Gfb + 1)
             {
                 St = decimal.Zero;
-            } else if (X < 17431)
+            } else if (X < 17006)
             {
                 Y = (X - Gfb) / 10000m;
-                Rw = Y * 932.47m;
+                Rw = Y * 954.8m;
                 Rw = Rw + 1400m;
                 St = Rw * Y; // TODO abrunden auf ganze euro
                 St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
-            } else if (X < 68430)
+            } else if (X < 66761)
             {
-                Y = (X - 17430) / 10000m;
-                Rw = Y * 176.77m;
+                Y = (X - 17005) / 10000m;
+                Rw = Y * 181.19m;
                 Rw = Rw + 2397m;
                 Rw = Rw * Y;
-                St = Rw + 1014.94m; // TODO abrunden auf ganze euro
+                St = Rw + 991.21m; // TODO abrunden auf ganze euro
                 St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             } else if (X < 277826)
             {
-                St = X * 0.42m - 10903.22m; // TODO abrunden auf ganze euro
+                St = X * 0.42m - 10636.31m; // TODO abrunden auf ganze euro
                 St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             } else
             {
-                St = X * 0.45m - 19237.97m; // TODO abrunden auf ganze euro
+                St = X * 0.45m - 18971.06m; // TODO abrunden auf ganze euro
                 St = Math.Round(St, 0, MidpointRounding.ToNegativeInfinity);
             }
             St = St * Kztab;

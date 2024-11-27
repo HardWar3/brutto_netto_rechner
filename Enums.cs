@@ -1,11 +1,11 @@
-﻿namespace brutto_netto_rechner
+﻿namespace brutto_netto_rechner_ui
 {
     public enum BruttoNettoGuiFields : int
     {
         Brutto = 1,
         Abrechnungsart = 2,
         Abrechnungsjahr = 3,
-        Versorgungsbezuege = 4,
+        VersorgungsBezuege = 4,
         Steuerklasse = 5,
         Kirche = 6,
         Bundesland = 7,
@@ -13,8 +13,9 @@
         Kinder = 9,
         Kinderfreibetrag = 10,
         KrankenversicherungsArt = 11,
-        KrankenversicherungsBeitrag = 12,
-        KrankenversicherungArbeitgeberzuschuss = 13
+        KrankenversicherungsZusatzbeitrag = 12,
+        KrankenversicherungsBeitrag = 13,
+        KrankenversicherungArbeitgeberzuschuss = 14
     }
 
     public enum BruttoNettoGuiFieldValues : int
